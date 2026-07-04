@@ -1,0 +1,324 @@
+{
+  "leaderboard": [
+    {
+      "rank": 1,
+      "name": "Aarav Sharma",
+      "college": "IIT Delhi",
+      "score": 98,
+      "streak": 32,
+      "badges": [
+        "DSA Master",
+        "7-Day Streak",
+        "Code Warrior"
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Ananya Iyer",
+      "college": "BITS Pilani",
+      "score": 95,
+      "streak": 25,
+      "badges": [
+        "SQL Wizard",
+        "Speed Coding"
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "Rohan Gupta",
+      "college": "DTU",
+      "score": 92,
+      "streak": 18,
+      "badges": [
+        "OS Guru",
+        "14-Day Streak"
+      ]
+    },
+    {
+      "rank": 4,
+      "name": "Pooja Patel",
+      "college": "VIT Vellore",
+      "score": 89,
+      "streak": 12,
+      "badges": [
+        "Networking Pro"
+      ]
+    },
+    {
+      "rank": 5,
+      "name": "Kabir Mehta",
+      "college": "RVCE Bangalore",
+      "score": 86,
+      "streak": 8,
+      "badges": [
+        "Resume Star"
+      ]
+    }
+  ],
+  "saved_profiles": [
+    {
+      "name": "DINESH R",
+      "college": "VSB ENGINEERING COLLEGE",
+      "language": "Java",
+      "skill_level": "Beginner",
+      "target_company": "TCS",
+      "days_left": "30",
+      "strengths": "ARRAYS",
+      "weaknesses": "REDUX",
+      "resume_text": "",
+      "streak": 1,
+      "badges": [
+        "Placement Explorer"
+      ],
+      "bookmarks": [],
+      "roadmapData": {
+        "behavioral_questions": [
+          {
+            "common_mistakes": "Claiming you never feel stressed or stating you failed the deadline without context.",
+            "expected_answer": "Explain the situation, task, actions (prioritizing, communicating, distributing workload), and positive result.",
+            "question": "Tell me about a time you handled pressure and tight deadlines.",
+            "tips": "Emphasize collaboration and time management tools."
+          }
+        ],
+        "coding_problems": [
+          {
+            "difficulty": "Easy",
+            "name": "Two Sum",
+            "platform": "LeetCode",
+            "topic": "Arrays & Hashing",
+            "why_solve": "Extremely popular warm-up question for TCS interviews."
+          },
+          {
+            "difficulty": "Easy",
+            "name": "Reverse String",
+            "platform": "HackerRank",
+            "topic": "Two Pointers",
+            "why_solve": "Tests memory mutation and pointer logic in a basic loop structure."
+          },
+          {
+            "difficulty": "Medium",
+            "name": "Longest Palindromic Substring",
+            "platform": "LeetCode",
+            "topic": "String / Dynamic Programming",
+            "why_solve": "Pushes understanding of string expansion, palindromes, and DP arrays."
+          },
+          {
+            "difficulty": "Medium",
+            "name": "Search in Rotated Sorted Array",
+            "platform": "GeeksforGeeks",
+            "topic": "Binary Search",
+            "why_solve": "Standard modification of binary search frequently asked in advanced tech screening rounds."
+          },
+          {
+            "difficulty": "Hard",
+            "name": "Edit Distance",
+            "platform": "Codeforces",
+            "topic": "Dynamic Programming",
+            "why_solve": "Tests optimization skills, string operations, and matrix transitions. (Crucial for high tiers like TCS)."
+          }
+        ],
+        "confidence_score": 79,
+        "hr_questions": [
+          {
+            "common_mistakes": "Reciting the entire resume line-by-line or listing family details.",
+            "expected_answer": "Use Present-Past-Future framework. Talk about current education/role, past achievements/projects, and future career alignment with the company.",
+            "question": "Tell me about yourself.",
+            "tips": "Keep it under 2 minutes and project confidence."
+          },
+          {
+            "common_mistakes": "Giving generic answers like 'I am hardworking and loyal'.",
+            "expected_answer": "Align your skills directly with target job requirements. Show passion, mention a problem you solved, and state how you will add value immediately.",
+            "question": "Why should we hire you?",
+            "tips": "Cite relevant domain achievements or certifications."
+          }
+        ],
+        "interview_questions": [
+          {
+            "common_mistakes": "Saying memory is unlimited or not mentioning garbage collection.",
+            "expected_answer": "Highlight stack allocation for reference pointers and heap allocation for objects. Explain how garbage collection is triggered.",
+            "question": "Explain memory management in Java.",
+            "tips": "Discuss reference counting or mark-and-sweep phases.",
+            "topic": "Language Core"
+          },
+          {
+            "common_mistakes": "Saying UDP is never used. Correct this by giving real-world examples (TCP for Web, UDP for Video calls).",
+            "expected_answer": "TCP is connection-oriented, reliable, guarantees ordering, and has flow control. UDP is connectionless, fast, unreliable, and has no ordering guarantees.",
+            "question": "What is the difference between TCP and UDP?",
+            "tips": "Use a tabular comparison format during explanation.",
+            "topic": "Networking"
+          },
+          {
+            "common_mistakes": "Confusing unique key constraints with primary key attributes.",
+            "expected_answer": "Primary Key uniquely identifies row, cannot be NULL (1 per table). Unique Key uniquely identifies rows but allows NULL (multiple allowed). Foreign Key links rows between tables to enforce referential integrity.",
+            "question": "What are the difference between primary keys, unique keys, and foreign keys?",
+            "tips": "Illustrate with a simple ER diagram mapping schema relationships.",
+            "topic": "DBMS"
+          },
+          {
+            "common_mistakes": "Forgetting the names of the conditions or failing to define circular wait.",
+            "expected_answer": "Deadlock is a state where processes are blocked waiting for resources held by each other. Conditions: Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait.",
+            "question": "What is a deadlock and what are the 4 conditions to meet deadlocks?",
+            "tips": "Mention Coffman conditions for deadlocks and prevention/avoidance methods (e.g. Banker's Algorithm).",
+            "topic": "Operating Systems"
+          }
+        ],
+        "interview_tips": [
+          "Research the latest products and press releases of TCS before entering the room.",
+          "When asked coding questions, explain your approach first before putting down code.",
+          "Have 2 meaningful questions prepared to ask the interviewer at the end of the session.",
+          "Keep a notebook handy to trace algorithm inputs if necessary."
+        ],
+        "motivation_quote": "Success is the sum of small efforts, repeated day in and day out. - Robert Collier",
+        "one_week_plan": [
+          {
+            "day": "Day 1",
+            "goal": "Master Java collections and solve TCS basic templates",
+            "tasks": [
+              "Solve 2 questions regarding Arrays/Strings in Java",
+              "Read 3 OOP concept sheets",
+              "Practice 1 Mock interview prompt"
+            ]
+          },
+          {
+            "day": "Day 2",
+            "goal": "Master Java collections and solve TCS basic templates",
+            "tasks": [
+              "Solve 2 questions regarding Arrays/Strings in Java",
+              "Read 3 OOP concept sheets",
+              "Practice 1 Mock interview prompt"
+            ]
+          },
+          {
+            "day": "Day 3",
+            "goal": "Master Java collections and solve TCS basic templates",
+            "tasks": [
+              "Solve 2 questions regarding Arrays/Strings in Java",
+              "Read 3 OOP concept sheets",
+              "Practice 1 Mock interview prompt"
+            ]
+          },
+          {
+            "day": "Day 4",
+            "goal": "Master Java collections and solve TCS basic templates",
+            "tasks": [
+              "Solve 2 questions regarding Arrays/Strings in Java",
+              "Read 3 OOP concept sheets",
+              "Practice 1 Mock interview prompt"
+            ]
+          },
+          {
+            "day": "Day 5",
+            "goal": "Master Java collections and solve TCS basic templates",
+            "tasks": [
+              "Solve 2 questions regarding Arrays/Strings in Java",
+              "Read 3 OOP concept sheets",
+              "Practice 1 Mock interview prompt"
+            ]
+          },
+          {
+            "day": "Day 6",
+            "goal": "Master Java collections and solve TCS basic templates",
+            "tasks": [
+              "Solve 2 questions regarding Arrays/Strings in Java",
+              "Read 3 OOP concept sheets",
+              "Practice 1 Mock interview prompt"
+            ]
+          },
+          {
+            "day": "Day 7",
+            "goal": "Master Java collections and solve TCS basic templates",
+            "tasks": [
+              "Solve 2 questions regarding Arrays/Strings in Java",
+              "Read 3 OOP concept sheets",
+              "Practice 1 Mock interview prompt"
+            ]
+          }
+        ],
+        "preparation_score": 64,
+        "projects_to_build": [
+          {
+            "description": "An interactive web portal where candidates answer AI-generated technical questions, storing results locally to track performance metrics.",
+            "tech_stack": "HTML/CSS, Flask, Java, JSON Data Store",
+            "title": "Smart Mock Interview Evaluator"
+          },
+          {
+            "description": "Tailored for TCS's tech demands, this utility queues tasks, handles thread execution models, and supports priorities.",
+            "tech_stack": "Java, Threads, Socket Programming",
+            "title": "Distributed Task Scheduler in Java"
+          }
+        ],
+        "recommended_resources": [
+          {
+            "name": "LeetCode Top Interview 150",
+            "type": "Website",
+            "url_or_info": "https://leetcode.com/studyplan/top-interview-150/"
+          },
+          {
+            "name": "GeeksforGeeks Placement Preparation Course",
+            "type": "Website",
+            "url_or_info": "https://www.geeksforgeeks.org/placement-preparation-course/"
+          },
+          {
+            "name": "Core Java Documentation & Design Guides",
+            "type": "Documentation",
+            "url_or_info": "Official Reference Docs"
+          },
+          {
+            "name": "Grokking the System Design Interview",
+            "type": "Book",
+            "url_or_info": "System Design Reference Handbook"
+          }
+        ],
+        "resume_suggestions": [
+          "Include metrics and conversion figures in your projects section.",
+          "Format your preferred language (Java) directly under a primary Technical Skills header.",
+          "Remove old high school details and focus on college engineering projects.",
+          "Add a link to your active GitHub and LinkedIn profiles."
+        ],
+        "roadmap": [
+          {
+            "focus": "Deep dive into Java features (garbage collection, memory model) and basic DSA.",
+            "stage": "Days 1-10: Foundation & Language Depth",
+            "tasks": [
+              "Complete 15 Easy DSA coding challenges",
+              "Re-implement OOP pillars (inheritance, polymorphism, abstraction)",
+              "Analyze core collection structures"
+            ]
+          },
+          {
+            "focus": "Tackle medium complexity algorithms and study OS, DBMS, Networks.",
+            "stage": "Days 11-20: Advanced DSA & Core Subjects",
+            "tasks": [
+              "Focus on Trees, Graphs, and Dynamic Programming",
+              "Practice SQL queries on LeetCode Database section",
+              "Study HTTP protocols, TCP vs UDP, and routing models"
+            ]
+          },
+          {
+            "focus": "Address REDUX and study system design patterns.",
+            "stage": "Days 21-25: Weakness Focus & System Design",
+            "tasks": [
+              "Allocate 4 hours daily to solve {weaknesses} problems",
+              "Understand vertical vs horizontal scaling",
+              "Review load balancers and database replication"
+            ]
+          },
+          {
+            "focus": "Mock interviews and final checks.",
+            "stage": "Days 26-30: Ultimate Review & Mock Run",
+            "tasks": [
+              "Simulate 3 mock interviews (2 Tech, 1 HR)",
+              "Run resume through an ATS scan",
+              "Review formula cards and key cheat sheets"
+            ]
+          }
+        ],
+        "student_summary": "Based on preferred coding language (Java) and targeting TCS, the plan focuses on addressing weaknesses in 'REDUX' while leveraging strengths in 'ARRAYS'. With 30 days left, a structured plan is designed to maximize key coding templates, review core subjects (DBMS, OS), and practice company-specific mocks to boost performance.",
+        "system_design_questions": []
+      },
+      "preparation_score": 64,
+      "confidence_score": 79
+    }
+  ],
+  "bookmarks": []
+}

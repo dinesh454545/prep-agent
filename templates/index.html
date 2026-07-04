@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Preparation Agent - AI-Powered Career Coach</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <!-- Custom Style -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-expand-lg py-3 border-bottom border-color" style="background-color: var(--bg-sidebar); transition: background-color var(--transition-speed);">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <span class="fs-4 fw-extrabold" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">
+                    <i class="fas fa-graduation-cap"></i> PrepAgent
+                </span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold text-muted" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold text-muted" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <!-- Dark Mode Toggle Switch -->
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-sun text-warning" style="font-size: 0.9rem;"></i>
+                            <label class="switch">
+                                <input type="checkbox" id="themeToggle">
+                                <span class="slider"></span>
+                            </label>
+                            <i class="fas fa-moon text-primary" style="font-size: 0.9rem;"></i>
+                        </div>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-primary-custom" href="{{ url_for('dashboard') }}">Start Preparing <i class="fas fa-arrow-right ms-2"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center text-lg-start">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="hero-badge">
+                        <i class="fas fa-sparkles text-warning"></i>
+                        <span>AI-Powered Career Transformation</span>
+                    </div>
+                    <h1 class="hero-title text-main">
+                        Cracking Your Dream Job Just Got <span>Easier</span>
+                    </h1>
+                    <p class="fs-5 text-muted mb-4">
+                        Unlock a personalized roadmap, DSA challenges, company-specific strategies, and interactive mock interviews curated dynamically using advanced Llama 3 AI logic.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
+                        <a class="btn btn-primary-custom" href="{{ url_for('dashboard') }}">
+                            <i class="fas fa-bolt me-2"></i> Create AI Roadmap
+                        </a>
+                        <a class="btn btn-secondary-custom" href="#features">
+                            Explore Features
+                        </a>
+                    </div>
+                    
+                    <div class="row mt-5 text-start">
+                        <div class="col-4 border-end border-color">
+                            <h3 class="text-primary mb-0">95%</h3>
+                            <span class="small text-muted">Success Rate</span>
+                        </div>
+                        <div class="col-4 border-end border-color">
+                            <h3 class="text-primary mb-0">15+</h3>
+                            <span class="small text-muted">IT Companies</span>
+                        </div>
+                        <div class="col-4">
+                            <h3 class="text-primary mb-0">10k+</h3>
+                            <span class="small text-muted">Students Hired</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 text-center">
+                    <div class="pulse-animation" style="position: relative; display: inline-block;">
+                        <!-- Custom SVG Vector depicting dashboard / stats -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="100%" height="auto" style="max-width: 500px;">
+                            <defs>
+                                <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#2563eb" />
+                                    <stop offset="100%" stop-color="#0ea5e9" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Main Frame -->
+                            <rect x="50" y="50" width="500" height="380" rx="20" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="4"/>
+                            <!-- Sidebar -->
+                            <rect x="50" y="50" width="130" height="380" rx="0" fill="var(--bg-primary)" stroke="var(--border-color)" stroke-width="2"/>
+                            <rect x="70" y="80" width="90" height="15" rx="5" fill="#cbd5e1" />
+                            <circle cx="80" cy="130" r="10" fill="#2563eb" />
+                            <rect x="100" y="125" width="60" height="10" rx="3" fill="#64748b" />
+                            <circle cx="80" cy="170" r="10" fill="#64748b" />
+                            <rect x="100" y="165" width="60" height="10" rx="3" fill="#cbd5e1" />
+                            <circle cx="80" cy="210" r="10" fill="#64748b" />
+                            <rect x="100" y="205" width="60" height="10" rx="3" fill="#cbd5e1" />
+                            
+                            <!-- Header -->
+                            <rect x="200" y="80" width="320" height="40" rx="10" fill="url(#blueGrad)" opacity="0.1"/>
+                            <rect x="220" y="92" width="180" height="16" rx="5" fill="#2563eb"/>
+                            
+                            <!-- Cards -->
+                            <rect x="200" y="140" width="150" height="110" rx="12" fill="var(--bg-primary)" stroke="var(--border-color)" stroke-width="2"/>
+                            <circle cx="275" cy="180" r="25" fill="none" stroke="#2563eb" stroke-width="6" stroke-dasharray="120 40"/>
+                            <text x="260" y="186" font-family="'Plus Jakarta Sans', sans-serif" font-weight="bold" fill="var(--text-main)" font-size="14">82%</text>
+                            <rect x="230" y="225" width="90" height="10" rx="3" fill="#64748b" />
+
+                            <rect x="370" y="140" width="150" height="110" rx="12" fill="var(--bg-primary)" stroke="var(--border-color)" stroke-width="2"/>
+                            <rect x="390" y="165" width="110" height="12" rx="4" fill="#10b981" />
+                            <rect x="390" y="190" width="80" height="12" rx="4" fill="#cbd5e1" />
+                            <rect x="390" y="215" width="95" height="12" rx="4" fill="#cbd5e1" />
+
+                            <!-- Bottom Timeline Bar -->
+                            <rect x="200" y="270" width="320" height="130" rx="12" fill="var(--bg-primary)" stroke="var(--border-color)" stroke-width="2"/>
+                            <circle cx="230" cy="305" r="10" fill="#2563eb"/>
+                            <rect x="255" y="300" width="180" height="10" rx="3" fill="var(--text-main)"/>
+                            <rect x="255" y="315" width="230" height="6" rx="3" fill="#94a3b8"/>
+                            
+                            <circle cx="230" cy="355" r="10" fill="#10b981"/>
+                            <rect x="255" y="350" width="150" height="10" rx="3" fill="var(--text-main)"/>
+                            <rect x="255" y="365" width="200" height="6" rx="3" fill="#94a3b8"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5" style="background-color: var(--bg-primary); transition: background-color var(--transition-speed);">
+        <div class="container py-4">
+            <div class="text-center max-w-xl mx-auto mb-5">
+                <span class="text-primary fw-bold text-uppercase" style="font-size: 0.85rem; letter-spacing: 0.1em;">Everything You Need</span>
+                <h2 class="text-main mt-2">Comprehensive Features to Propel Placement Success</h2>
+                <p class="text-muted">A standard minimum viable plan won't get you hired. That's why we generate a complete dashboard of preparation modules.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="dashboard-card h-100">
+                        <div class="text-primary mb-3" style="font-size: 2rem;"><i class="fas fa-route"></i></div>
+                        <h4 class="mb-2">Personalized Roadmap</h4>
+                        <p class="small text-muted">A week-by-week timeline tailored specifically to your days left for interview, strengths, and weaknesses.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="dashboard-card h-100">
+                        <div class="text-primary mb-3" style="font-size: 2rem;"><i class="fas fa-code"></i></div>
+                        <h4 class="mb-2">Curated Coding Problems</h4>
+                        <p class="small text-muted">Categorized coding tasks linked from platforms like LeetCode, HackerRank, and GeeksforGeeks based on your target company.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="dashboard-card h-100">
+                        <div class="text-primary mb-3" style="font-size: 2rem;"><i class="fas fa-file-invoice"></i></div>
+                        <h4 class="mb-2">Resume Critiques</h4>
+                        <p class="small text-muted">Paste your resume and get an instant ATS score calculation, strength analysis, and critical formatting suggestions.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="dashboard-card h-100">
+                        <div class="text-primary mb-3" style="font-size: 2rem;"><i class="fas fa-comments"></i></div>
+                        <h4 class="mb-2">Mock Interview Simulation</h4>
+                        <p class="small text-muted">Generate 10 technical, 10 HR, and 10 behavioral questions matching your language parameters with tips & answer structures.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="dashboard-card h-100">
+                        <div class="text-primary mb-3" style="font-size: 2rem;"><i class="fas fa-chart-line"></i></div>
+                        <h4 class="mb-2">Company Specific Guides</h4>
+                        <p class="small text-muted">Specific round patterns, average difficulty, and mock patterns for TCS, Infosys, Zoho, Amazon, Google, Microsoft, and more.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="dashboard-card h-100">
+                        <div class="text-primary mb-3" style="font-size: 2rem;"><i class="fas fa-calendar-day"></i></div>
+                        <h4 class="mb-2">Daily Challenge Solver</h4>
+                        <p class="small text-muted">Get one coding problem, one aptitude challenge, and one interview topic refreshed daily to build muscle memory.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5" style="background-color: var(--bg-sidebar); transition: background-color var(--transition-speed);">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="text-primary fw-bold text-uppercase" style="font-size: 0.85rem;">Testimonials</span>
+                <h2 class="text-main mt-2">What Successful Students Say</h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card p-4 border-color h-100" style="background-color: var(--bg-primary); border-radius: var(--border-radius-lg);">
+                        <p class="small text-muted italic mb-4">"The 7-day roadmap was extremely helpful when I suddenly got an interview call from TCS. The SQL questions popped up exactly in the same format!"</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px; font-weight:700;">VS</div>
+                            <div>
+                                <h6 class="mb-0 text-main">Varun Sen</h6>
+                                <span class="small text-muted">Placed at TCS Ninja</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card p-4 border-color h-100" style="background-color: var(--bg-primary); border-radius: var(--border-radius-lg);">
+                        <p class="small text-muted italic mb-4">"I used the Resume Analyzer to identify missing keywords. Once I updated it as suggested, my resume cleared the initial screen for Amazon."</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px; font-weight:700;">AK</div>
+                            <div>
+                                <h6 class="mb-0 text-main">Ayushi Khandelwal</h6>
+                                <span class="small text-muted">Placed at Amazon AWS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card p-4 border-color h-100" style="background-color: var(--bg-primary); border-radius: var(--border-radius-lg);">
+                        <p class="small text-muted italic mb-4">"Zoho's round structure and advanced programming tips gave me a clean headstart. The Mock Interview module helped me perfect my STAR behavioral structures."</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px; font-weight:700;">RN</div>
+                            <div>
+                                <h6 class="mb-0 text-main">Rithvik Nair</h6>
+                                <span class="small text-muted">Placed at Zoho Corp</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 border-top border-color" style="background-color: var(--bg-sidebar); transition: background-color var(--transition-speed);">
+        <div class="container text-center">
+            <h5 class="mb-3 text-main"><i class="fas fa-graduation-cap text-primary me-2"></i> Placement Preparation Agent</h5>
+            <p class="small text-muted mb-4">Empowering students to land their engineering roles with modern AI roadmapping guidelines.</p>
+            <p class="small text-light mb-0">&copy; 2026 Placement Preparation Agent. Built for College Submissions. Open Source MIT.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

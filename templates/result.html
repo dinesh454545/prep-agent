@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Placement Recommendation Hub</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <!-- Custom Style -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div>
+                <div class="sidebar-logo">
+                    <span class="fs-4 fw-extrabold"><i class="fas fa-graduation-cap"></i> PrepAgent</span>
+                </div>
+                
+                <!-- Quick Student Summary Card inside Sidebar -->
+                <div class="card p-3 mb-4 border-color no-print" style="background-color: var(--bg-primary); border-radius: var(--border-radius-md);">
+                    <h6 class="text-primary mb-1" id="studentNameHeader">Student</h6>
+                    <span class="small text-muted d-block" id="collegeText">IIT Delhi</span>
+                    <hr class="my-2 border-color">
+                    <span class="small text-muted d-block">Target: <strong class="text-main" id="companyText">TCS</strong></span>
+                    <span class="small text-muted d-block">Lang: <strong class="text-main" id="languageText">Python</strong></span>
+                    <span class="small text-muted d-block">Level: <span class="badge bg-primary text-white" style="font-size:0.65rem;" id="levelText">Intermediate</span></span>
+                </div>
+
+                <ul class="nav-menu">
+                    <li>
+                        <div class="nav-item-link active" data-tab="aiRoadmapSec">
+                            <i class="fas fa-route"></i>
+                            <span>AI Recommendation</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item-link" data-tab="resumeAnalyzerSec">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Resume Analyzer</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item-link" data-tab="companyPrepSec">
+                            <i class="fas fa-building"></i>
+                            <span>Company Prep</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item-link" data-tab="mockInterviewSec">
+                            <i class="fas fa-comments"></i>
+                            <span>AI Mock Interview</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item-link" data-tab="dailyChallengeSec">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Daily Challenge</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item-link" data-tab="weaknessDetectorSec">
+                            <i class="fas fa-search-plus"></i>
+                            <span>Weakness Detector</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item-link" data-tab="leaderboardSec">
+                            <i class="fas fa-award"></i>
+                            <span>Leaderboard & Badges</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sidebar Bottom: Theme Switch & Back Home -->
+            <div>
+                <div class="theme-switch-container no-print">
+                    <span class="theme-switch-label">Dark Theme</span>
+                    <label class="switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <a href="{{ url_for('home') }}" class="btn btn-sm btn-outline-danger w-100 mt-3 no-print">
+                    <i class="fas fa-sign-out-alt me-2"></i>Exit Dashboard
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Mobile Header Top Bar -->
+            <header class="d-flex d-lg-none justify-content-between align-items-center mb-4 no-print">
+                <button class="btn btn-primary-custom px-3 py-2" id="mobileSidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h4 class="mb-0 text-primary fw-bold"><i class="fas fa-graduation-cap"></i> PrepAgent</h4>
+                <div style="width: 42px;"></div>
+            </header>
+
+            <!-- Dynamic Stats Widgets Row (Unified Dashboard Header) -->
+            <div class="row g-3 mb-4">
+                
+                <!-- Countdown -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="dashboard-card text-center py-3">
+                        <span class="small text-muted d-block mb-1">Placement Countdown</span>
+                        <h4 class="mb-0 text-primary" id="countdownTimer">Loading...</h4>
+                    </div>
+                </div>
+
+                <!-- Streak Tracker -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="dashboard-card text-center py-3">
+                        <span class="small text-muted d-block mb-1">Current Streak</span>
+                        <h4 class="mb-0 text-warning"><i class="fas fa-fire me-1"></i> <span id="streakVal">1</span> Days</h4>
+                    </div>
+                </div>
+
+                <!-- Badges Earned -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="dashboard-card text-center py-3">
+                        <span class="small text-muted d-block mb-1">Achievements Unlocked</span>
+                        <h4 class="mb-0 text-success"><i class="fas fa-trophy me-1"></i> <span id="badgeCount">1</span> Badges</h4>
+                    </div>
+                </div>
+
+                <!-- Today's Goal -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="dashboard-card text-center py-3">
+                        <span class="small text-muted d-block mb-1">Today's Goal</span>
+                        <h6 class="mb-0 text-main fw-bold">Solve 2 DSA Problems</h6>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Primary Content Sections -->
+            <div class="tab-content">
+                
+                <!-- ========================================================
+                     TAB 1: AI ROADMAP RECOMMENDATION
+                     ======================================================== -->
+                <section class="tab-section active" id="aiRoadmapSec">
+                    <div class="row">
+                        
+                        <!-- Circular Prep Gauge & Summary Card -->
+                        <div class="col-lg-8 mb-4">
+                            <div class="dashboard-card h-100">
+                                <div class="dashboard-header mb-3">
+                                    <h4 class="text-main">AI Recommendation Roadmap</h4>
+                                    <span class="badge bg-primary text-white" id="motivationQuote">Strive for progress!</span>
+                                </div>
+                                <p class="text-muted small mb-4" id="roadmapSummary">
+                                    Loading your specialized AI roadmap summary profile...
+                                </p>
+                                
+                                <h5 class="text-primary mb-3">Timeline Roadmap</h5>
+                                <div class="roadmap-timeline" id="timelineContainer">
+                                    <!-- Rendered dynamically by JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Rings / Meters panel -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="dashboard-card text-center mb-4">
+                                <h5 class="text-main mb-3">Preparation Progress</h5>
+                                <div class="d-flex justify-content-center">
+                                    <div class="progress-ring">
+                                        <svg width="120" height="120">
+                                            <circle class="progress-ring-circle-bg" cx="60" cy="60" r="50"/>
+                                            <circle class="progress-ring-circle" id="prepCircle" cx="60" cy="60" r="50" stroke-dasharray="314.16" stroke-dashoffset="314.16"/>
+                                        </svg>
+                                        <div class="progress-ring-text" id="prepTextVal">60%</div>
+                                    </div>
+                                </div>
+                                <span class="small text-muted d-block mt-3">Calculated placement index rating.</span>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h5 class="text-main mb-3">Confidence Index</h5>
+                                <div class="custom-progress mb-2">
+                                    <div class="custom-progress-bar" id="confidenceBar" style="width: 50%;">50%</div>
+                                </div>
+                                <span class="small text-muted">A reflection of your current subject strengths.</span>
+                            </div>
+                            
+                            <!-- Bookmarked Questions Panel -->
+                            <div class="dashboard-card mt-4 no-print">
+                                <h5 class="text-main mb-3"><i class="fas fa-bookmark text-warning me-2"></i>Bookmarked Logs</h5>
+                                <div id="bookmarksList">
+                                    <p class="small text-muted">No bookmarked questions yet.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DSA Problems Recommended -->
+                    <div class="dashboard-card mb-4">
+                        <h4 class="text-primary mb-3">Target coding problems</h4>
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Problem Name</th>
+                                        <th>Difficulty</th>
+                                        <th>Topic</th>
+                                        <th>Why Solve</th>
+                                        <th>Platform</th>
+                                        <th class="no-print">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="codingProblemsBody">
+                                    <!-- Rendered dynamically by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Core subjects Q&As (Accoridons) -->
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="dashboard-card">
+                                <h4 class="text-primary mb-3">Language & Core Technical Qs</h4>
+                                <div id="techQuestionsAccordion"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="dashboard-card">
+                                <h4 class="text-primary mb-3">HR Placement Qs</h4>
+                                <div id="hrQuestionsAccordion"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="dashboard-card">
+                                <h4 class="text-primary mb-3">Behavioral STAR Qs</h4>
+                                <div id="behavioralQuestionsAccordion"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4" id="sysDesignSection" style="display:none;">
+                            <div class="dashboard-card">
+                                <h4 class="text-primary mb-3">System Design Challenges</h4>
+                                <div id="sysDesignAccordion"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommended Projects & Resources -->
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <div class="dashboard-card h-100">
+                                <h4 class="text-primary mb-3">Suggested Projects to Build</h4>
+                                <div class="row" id="projectsList"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="dashboard-card h-100">
+                                <h4 class="text-primary mb-3">Recommended Resources</h4>
+                                <ul class="small text-muted ps-3" id="resourcesList"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- One Week / Day study Planner -->
+                    <div class="dashboard-card mb-4">
+                        <h4 class="text-primary mb-3">Day-by-Day Preparation Goal</h4>
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2" id="oneWeekPlanContainer"></div>
+                    </div>
+                </section>
+
+                <!-- ========================================================
+                     TAB 2: RESUME ANALYZER
+                     ======================================================== -->
+                <section class="tab-section" id="resumeAnalyzerSec">
+                    <div class="dashboard-card mb-4">
+                        <h4 class="text-main mb-2">Resume Critic (ATS Scanner)</h4>
+                        <p class="small text-muted mb-4">Let Llama 3 analyze your resume context against your target placement parameters.</p>
+                        
+                        <form id="resumeAnalysisForm">
+                            <div class="mb-3">
+                                <textarea class="form-control form-control-custom" id="resumeTextPaste" rows="10" placeholder="Paste your plain text resume details here..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom"><i class="fas fa-microscope me-2"></i> Scan Resume</button>
+                        </form>
+                    </div>
+
+                    <div class="dashboard-card" id="resumeAnalysisResult" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-4 text-center border-end border-color mb-4 mb-md-0">
+                                <span class="small text-muted d-block mb-2">ATS Score</span>
+                                <h1 class="text-primary fw-extrabold mb-3" style="font-size: 3.5rem;" id="atsScoreVal">75%</h1>
+                                <div class="custom-progress mb-3">
+                                    <div class="custom-progress-bar" id="atsScoreBar" style="width: 75%;"></div>
+                                </div>
+                                <p class="small text-muted" id="atsVerdictText"></p>
+                            </div>
+                            
+                            <div class="col-md-8">
+                                <div class="mb-4">
+                                    <h5 class="text-success mb-2"><i class="fas fa-check-circle me-2"></i>Resume Strengths</h5>
+                                    <ul class="small text-muted ps-3" id="atsStrengthsList"></ul>
+                                </div>
+                                <div class="mb-4">
+                                    <h5 class="text-danger mb-2"><i class="fas fa-exclamation-circle me-2"></i>Critical Areas for Improvement</h5>
+                                    <ul class="list-unstyled ps-0" id="atsImprovementsList"></ul>
+                                </div>
+                                <div>
+                                    <h5 class="text-primary mb-2"><i class="fas fa-tags me-2"></i>Recommended Technical Keywords to Add</h5>
+                                    <div id="atsSkillsList"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================================
+                     TAB 3: COMPANY SPECIFIC PREPARATION
+                     ======================================================== -->
+                <section class="tab-section" id="companyPrepSec">
+                    <div class="dashboard-card mb-4">
+                        <h4 class="text-main mb-2">Company Interview Blueprints</h4>
+                        <p class="small text-muted mb-4">Select a company to load specific screening patterns, interview difficulties, and frequently asked coding challenges.</p>
+                        
+                        <div class="d-flex flex-wrap gap-2 mb-4">
+                            <button class="btn btn-outline-primary company-select-btn" data-company="TCS">TCS</button>
+                            <button class="btn btn-outline-primary company-select-btn" data-company="Infosys">Infosys</button>
+                            <button class="btn btn-outline-primary company-select-btn" data-company="Accenture">Accenture</button>
+                            <button class="btn btn-outline-primary company-select-btn" data-company="Zoho">Zoho</button>
+                            <button class="btn btn-outline-primary company-select-btn" data-company="Amazon">Amazon</button>
+                            <button class="btn btn-outline-primary company-select-btn active btn-primary" data-company="Google">Google</button>
+                            <button class="btn btn-outline-primary company-select-btn" data-company="Microsoft">Microsoft</button>
+                        </div>
+
+                        <div class="p-4 border border-color rounded" style="background-color: var(--bg-primary);" id="companyPrepDetails">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================================
+                     TAB 4: AI MOCK INTERVIEW
+                     ======================================================== -->
+                <section class="tab-section" id="mockInterviewSec">
+                    <!-- Welcome Setup Panel -->
+                    <div class="dashboard-card text-center py-5" id="mockSetupPanel">
+                        <span style="font-size:3.5rem;">🎤</span>
+                        <h3 class="text-main mt-3">Interactive Mock Interview Simulation</h3>
+                        <p class="text-muted max-w-lg mx-auto mb-4">
+                            Start a structured simulation generated dynamically by Llama 3 for your exact skill, preferred programming language, and target company. It will provide 10 technical, 10 HR, and 10 behavioral questions.
+                        </p>
+                        <button class="btn btn-primary-custom" id="startMockBtn">
+                            <i class="fas fa-play me-2"></i> Launch Mock Interview
+                        </button>
+                    </div>
+
+                    <!-- Playing Panel -->
+                    <div class="dashboard-card" id="mockPlayPanel" style="display: none;">
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center border-bottom border-color pb-3 mb-4">
+                            <h4 class="text-main mb-2 mb-sm-0">Mock Interactive Workspace</h4>
+                            <span class="small fw-semibold text-primary" id="mockIndexTracker">Question 1 of 10</span>
+                        </div>
+
+                        <!-- Category Filters -->
+                        <div class="d-flex gap-2 mb-4">
+                            <button class="btn btn-sm btn-outline-primary mock-cat-btn active" data-cat="technical">Technical Round</button>
+                            <button class="btn btn-sm btn-outline-primary mock-cat-btn" data-cat="hr">HR Round</button>
+                            <button class="btn btn-sm btn-outline-primary mock-cat-btn" data-cat="behavioral">Behavioral Round</button>
+                        </div>
+
+                        <!-- Question Display Card -->
+                        <div class="card p-4 border border-primary mb-4" style="background-color: var(--bg-primary); border-radius: var(--border-radius-md);">
+                            <span class="small text-primary d-block fw-bold text-uppercase mb-1">INTERVIEWER QUESTION:</span>
+                            <h4 class="text-main mb-0" id="mockQuestionText">Question details...</h4>
+                        </div>
+
+                        <!-- User Notes / Action Panel -->
+                        <div class="d-flex gap-3 mb-4">
+                            <button class="btn btn-primary-custom" id="showAnswerBtn"><i class="fas fa-eye me-2"></i> Reveal Correct Answer Guideline</button>
+                            <button class="btn btn-secondary-custom" id="mockPrevBtn"><i class="fas fa-arrow-left me-2"></i> Prev</button>
+                            <button class="btn btn-secondary-custom" id="mockNextBtn">Next <i class="fas fa-arrow-right ms-2"></i></button>
+                        </div>
+
+                        <!-- Answer guidelines container -->
+                        <div class="card p-4 border-color mt-3" id="mockAnswerDetails" style="display: none; background-color: var(--bg-card); border-radius: var(--border-radius-md);">
+                            <div class="mb-3">
+                                <strong class="text-success d-block mb-1"><i class="fas fa-check-circle me-1"></i> Key points to hit:</strong>
+                                <p class="small text-muted mb-0" id="mockExpectText"></p>
+                            </div>
+                            <div class="mb-3">
+                                <strong class="text-danger d-block mb-1"><i class="fas fa-times-circle me-1"></i> Common mistakes to avoid:</strong>
+                                <p class="small text-muted mb-0" id="mockMistakeText"></p>
+                            </div>
+                            <div>
+                                <strong class="text-primary d-block mb-1"><i class="fas fa-lightbulb me-1"></i> Tips for delivery:</strong>
+                                <p class="small text-muted mb-0" id="mockTipText"></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================================
+                     TAB 5: DAILY CHALLENGE
+                     ======================================================== -->
+                <section class="tab-section" id="dailyChallengeSec">
+                    <div class="dashboard-card">
+                        <div class="dashboard-header mb-4">
+                            <h4 class="text-main">Today's Placement Challenges</h4>
+                            <span class="badge bg-success text-white">Refreshed Daily</span>
+                        </div>
+                        <div id="dailyChallengeContainer">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================================
+                     TAB 6: WEAKNESS DETECTOR
+                     ======================================================= -->
+                <section class="tab-section" id="weaknessDetectorSec">
+                    <div class="dashboard-card mb-4">
+                        <h4 class="text-main mb-2">Subject Weakness Action Plan</h4>
+                        <p class="small text-muted mb-4">Struggling with certain algorithmic or design paradigms? Put them in below to get a dedicated conceptual revision timeline.</p>
+                        
+                        <form id="weaknessForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-control-custom" id="weaknessTopicInput" placeholder="e.g. Dynamic Programming, Redux Store, SQL Subqueries" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom"><i class="fas fa-magic me-2"></i> Detect & Solve</button>
+                        </form>
+                    </div>
+
+                    <div class="dashboard-card" id="weaknessResult" style="display: none;">
+                        <h5 class="text-primary mb-3">Topic Analysis</h5>
+                        <p class="small text-muted mb-4" id="weaknessOverview"></p>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <h6 class="text-success mb-2"><i class="fas fa-clipboard-check me-2"></i>Study Checklist</h6>
+                                <ul class="small text-muted ps-3" id="weaknessChecklist"></ul>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <h6 class="text-primary mb-2"><i class="fas fa-route me-2"></i>7-Day Practice Timeline</h6>
+                                <div id="weaknessTimeline" class="small text-muted"></div>
+                            </div>
+                        </div>
+
+                        <div class="card p-3 border-color" style="background-color: var(--bg-primary); border-radius: var(--border-radius-md);">
+                            <strong class="text-warning d-block mb-1"><i class="fas fa-lightbulb"></i> Expert Pro Tip:</strong>
+                            <p class="small text-muted mb-0" id="weaknessProTip"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================================
+                     TAB 7: LEADERBOARD & ACHIEVEMENTS
+                     ======================================================== -->
+                <section class="tab-section" id="leaderboardSec">
+                    
+                    <!-- Achievements badges -->
+                    <div class="dashboard-card mb-4">
+                        <h4 class="text-main mb-3">Achievement Badges</h4>
+                        <div class="row g-3" id="achievementsGrid">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Leaderboard -->
+                    <div class="dashboard-card">
+                        <h4 class="text-primary mb-3">Global Placement Leaderboard</h4>
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Candidate</th>
+                                        <th>College</th>
+                                        <th>Preparation Score</th>
+                                        <th>Streak</th>
+                                        <th>Badges</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leaderboardBody">
+                                    <!-- Populated dynamically by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Dashboard Bottom Layout Extra Utilities Panel (No Print) -->
+            <div class="row mt-5 pt-3 border-top border-color no-print">
+                <div class="col-12 d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+                    <button class="btn btn-sm btn-primary-custom" id="exportPlanBtn">
+                        <i class="fas fa-download me-1"></i> Export Plan
+                    </button>
+                    <button class="btn btn-sm btn-secondary-custom" id="printReportBtn">
+                        <i class="fas fa-file-pdf me-1"></i> Download PDF / Print
+                    </button>
+                    <button class="btn btn-sm btn-secondary-custom" id="copyResponseBtn">
+                        <i class="fas fa-copy me-1"></i> Copy Response
+                    </button>
+                    <button class="btn btn-sm btn-secondary-custom" id="sharePlanBtn">
+                        <i class="fas fa-share-alt me-1"></i> Share Plan
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading overlay modal -->
+    <div class="loader-overlay" id="loaderOverlay">
+        <div class="loader-box">
+            <div class="spinner-custom"></div>
+            <h4 class="text-main mb-2">Analyzing Request</h4>
+            <p class="text-muted small">Generating tailored response modules from Llama 3 models...</p>
+            <div class="loader-tip">Evaluating ATS scoring matrix rules...</div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

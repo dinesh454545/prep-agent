@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure Profile - Placement Preparation Agent</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <!-- Custom Style -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body style="min-height: 100vh; background-color: var(--bg-primary);">
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-expand-lg py-3 border-bottom border-color" style="background-color: var(--bg-sidebar);">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url_for('home') }}">
+                <span class="fs-4 fw-extrabold" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">
+                    <i class="fas fa-graduation-cap"></i> PrepAgent
+                </span>
+            </a>
+            
+            <div class="ms-auto d-flex align-items-center gap-2">
+                <i class="fas fa-sun text-warning" style="font-size: 0.9rem;"></i>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+                <i class="fas fa-moon text-primary" style="font-size: 0.9rem;"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Form Wizard Layout -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="dashboard-card p-5">
+                    
+                    <!-- Wizard Header Progression -->
+                    <div class="wizard-steps">
+                        <div class="wizard-progress-bar" style="width: 0%;"></div>
+                        <div class="wizard-step active">
+                            <div class="wizard-step-circle">1</div>
+                            <span class="wizard-step-label">Personal</span>
+                        </div>
+                        <div class="wizard-step">
+                            <div class="wizard-step-circle">2</div>
+                            <span class="wizard-step-label">Target</span>
+                        </div>
+                        <div class="wizard-step">
+                            <div class="wizard-step-circle">3</div>
+                            <span class="wizard-step-label">Resume</span>
+                        </div>
+                    </div>
+
+                    <!-- Profile Collection Form -->
+                    <form id="profileForm" novalidate>
+                        
+                        <!-- STEP 1: Personal Details & Language preferences -->
+                        <div class="form-step active">
+                            <h3 class="mb-2 text-main">Personal Background</h3>
+                            <p class="small text-muted mb-4">Let's start by getting to know your college profile and language preferences.</p>
+                            
+                            <div class="mb-3">
+                                <label for="studentName" class="form-label fw-semibold text-main">Full Name</label>
+                                <input type="text" class="form-control form-control-custom" id="studentName" placeholder="e.g. John Doe" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="collegeName" class="form-label fw-semibold text-main">College / University</label>
+                                <input type="text" class="form-control form-control-custom" id="collegeName" placeholder="e.g. IIT Delhi" required>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="progLanguage" class="form-label fw-semibold text-main">Preferred Language</label>
+                                    <select class="form-select form-control-custom form-select-custom" id="progLanguage" required>
+                                        <option value="Python">Python</option>
+                                        <option value="Java">Java</option>
+                                        <option value="C++">C++</option>
+                                        <option value="JavaScript">JavaScript</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold text-main d-block">Skill Level</label>
+                                    <div class="d-flex gap-2">
+                                        <div class="flex-fill">
+                                            <input type="radio" name="skillLevel" id="levelBeginner" value="Beginner" class="card-option-input">
+                                            <label class="card-option justify-content-center text-center py-2" for="levelBeginner">
+                                                <span class="small fw-bold">Beginner</span>
+                                            </label>
+                                        </div>
+                                        <div class="flex-fill">
+                                            <input type="radio" name="skillLevel" id="levelIntermediate" value="Intermediate" class="card-option-input" checked>
+                                            <label class="card-option justify-content-center text-center py-2" for="levelIntermediate">
+                                                <span class="small fw-bold">Intermediate</span>
+                                            </label>
+                                        </div>
+                                        <div class="flex-fill">
+                                            <input type="radio" name="skillLevel" id="levelAdvanced" value="Advanced" class="card-option-input">
+                                            <label class="card-option justify-content-center text-center py-2" for="levelAdvanced">
+                                                <span class="small fw-bold">Advanced</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end mt-4">
+                                <button type="button" class="btn btn-primary-custom btn-next">Next <i class="fas fa-chevron-right ms-2"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2: Company specifics, Days, Strengths & Weaknesses -->
+                        <div class="form-step">
+                            <h3 class="mb-2 text-main">Target Target & Prep Areas</h3>
+                            <p class="small text-muted mb-4">Set your placement details so that the Llama 3 model can customize specific mocks.</p>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="targetCompany" class="form-label fw-semibold text-main">Target Company</label>
+                                    <select class="form-select form-control-custom form-select-custom" id="targetCompany" required>
+                                        <option value="TCS">TCS</option>
+                                        <option value="Infosys">Infosys</option>
+                                        <option value="Accenture">Accenture</option>
+                                        <option value="Capgemini">Capgemini</option>
+                                        <option value="Zoho">Zoho</option>
+                                        <option value="Amazon">Amazon</option>
+                                        <option value="Google">Google</option>
+                                        <option value="Microsoft">Microsoft</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="daysRemaining" class="form-label fw-semibold text-main">Days Left for Interview</label>
+                                    <input type="number" class="form-control form-control-custom" id="daysRemaining" value="30" min="1" max="365" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="strengths" class="form-label fw-semibold text-main">Your Strengths</label>
+                                <input type="text" class="form-control form-control-custom" id="strengths" placeholder="e.g. Arrays, Strings, OOP concepts" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="weaknesses" class="form-label fw-semibold text-main">Topics you Struggle with (Weak Areas)</label>
+                                <input type="text" class="form-control form-control-custom" id="weaknesses" placeholder="e.g. Dynamic Programming, SQL joins, Redux" required>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-secondary-custom btn-prev"><i class="fas fa-chevron-left me-2"></i> Back</button>
+                                <button type="button" class="btn btn-primary-custom btn-next">Next <i class="fas fa-chevron-right ms-2"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3: Paste resume details (optional) -->
+                        <div class="form-step">
+                            <h3 class="mb-2 text-main">Upload Resume (Optional)</h3>
+                            <p class="small text-muted mb-4">Paste your plain text resume content below to perform an automated ATS scorecard scan.</p>
+                            
+                            <div class="mb-4">
+                                <label for="resumePaste" class="form-label fw-semibold text-main">Resume Text Content</label>
+                                <textarea class="form-control form-control-custom" id="resumePaste" rows="8" placeholder="Paste your resume profile description, projects, work history, and educational qualifications here..."></textarea>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-secondary-custom btn-prev"><i class="fas fa-chevron-left me-2"></i> Back</button>
+                                <button type="submit" class="btn btn-primary-custom"><i class="fas fa-magic me-2"></i> Generate AI Roadmap</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading overlay modal -->
+    <div class="loader-overlay" id="loaderOverlay">
+        <div class="loader-box">
+            <div class="spinner-custom"></div>
+            <h4 class="text-main mb-2">Analyzing Profile Details</h4>
+            <p class="text-muted small">Integrating with Llama 3 model to generate custom roadmaps, code structures, resources, and HR questions...</p>
+            <div class="loader-tip">Selecting popular coding challenges for your skill profile...</div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
